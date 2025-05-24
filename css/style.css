@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --size-forlogo: 3rem;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    box-sizing: border-box;
+    caret-color: transparent;
+
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited,
+a:hover {
+    color: black;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+    margin: 0;
+    overflow: hidden; /* Oculta barras de desplazamiento si los corazones salen de la vista */
+    background-color: #f0f0f0;
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 50px;
+}
+
+
+
+#heart-container {
+    position: fixed;
+    /* O absolute, dependiendo de si quieres que se posicionen respecto al viewport o a un contenedor */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Importante: hace que el contenedor no bloquee clics a otros elementos */
+    z-index: 1000;
+    /* Asegura que los corazones estén por encima de otros elementos */
+}
+
+/* Estilo base del corazón */
+.heart {
+    position: absolute; /* Posicionamiento libre dentro del contenedor */
+    font-size: 20px; /* Tamaño inicial (se puede variar con JS) */
+    opacity: 0; /* Inicialmente invisibles */
+    transform: translate(-50%, -50%) scale(0); /* Centra el corazón en su posición y lo hace muy pequeño inicialmente */
+    pointer-events: none; /* Los corazones individuales tampoco deben bloquear clics */
+    animation: floatAndFade 1.5s ease-in forwards; /* Aplica la animación */
+    
+}
+
+.header::selection,
+.header::-moz-selection {
+    background: transparent;
+    color: inherit;
+}
+
+.header__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: var(--size-forlogo);
+}
+
+.header__logo-img {
+    width: var(--size-forlogo);
+    margin: .5rem;
+}
+
+::selection {
+    background: transparent;
+    color: inherit;
+    /* Opcional: mantiene el color original del texto */
+}
+
+::-moz-selection {
+    /* Para navegadores basados en Mozilla (Firefox) */
+    background: transparent;
+    color: inherit;
+    /* Opcional: mantiene el color original del texto */
+}
+
+
+
+#progressBarContainer {
+    width: 250px;
+    height: 5px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0;
+    background: black;
+    transition: width 0.3s;
+}
+
+
+/* Definición de la animación */
+@keyframes floatAndFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    30% {
+        opacity: 1; /* Aparecen */
+        transform: translate(-50%, -50%) scale(1.3); /* Crece ligeramente simulando un latido */
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.15); /* Se reduce un poco simulando un latido */
+    }
+
+    70% {
+        transform: translate(-50%, -50%) scale(1.25); /* Crece nuevamente simulando un segundo latido */
+    }
+
+    100% {
+        opacity: 0; /* Desaparecen gradualmente */
+        transform: translate(-50%, -250%) scale(1); /* Se mueven hacia arriba y vuelven a tamaño normal */
+    }
+}
+
+/* Estilo del corazón */
+/* En la clase corazon vamos a llamar latidos en la animación  */
+.corazon {
+	display: inline-block;
+	animation: latidos 1.5s infinite; /* Llama a la animación de latidos */
+    line-height: 1; /* Para centrar el corazón verticalmente */
+    margin: 0 0.5rem; /* Espacio entre corazones */
+    transform: scale(1); /* Asegura que el corazón esté centrado */
+	transform-origin: center;
+}
+/* Animación de "latidos" realista */
+@keyframes latidos {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.3); }
+    50% { transform: scale(1.15); }
+    70% { transform: scale(1.25); }
+    100% { transform: scale(1); }
+}

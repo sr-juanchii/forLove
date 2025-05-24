@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Oculta barras de desplazamiento si los corazones salen de la vista */
+    background-color: #f0f0f0;
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 50px;
+}
+
+#heart-container {
+    position: fixed; /* O absolute, dependiendo de si quieres que se posicionen respecto al viewport o a un contenedor */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Importante: hace que el contenedor no bloquee clics a otros elementos */
+    z-index: 1000; /* Asegura que los corazones estén por encima de otros elementos */
+}
+
+
+
+
+/* Definición de la animación */
+@keyframes floatAndFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    20% {
+        opacity: 1; /* Aparecen */
+        transform: translate(-50%, -50%) scale(1); /* Crece a tamaño normal */
+    }
+    100% {
+        opacity: 0; /* Desaparecen gradualmente */
+        transform: translate(-50%, -250%) scale(1.2); /* Se mueven hacia arriba y pueden crecer ligeramente */
+         /* Puedes ajustar la dirección y la distancia del movimiento */
+         /* Ejemplo: translate(50px, -200px) para movimiento en diagonal */
+    }
+}
